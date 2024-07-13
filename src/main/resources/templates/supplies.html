@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Supplies</title>
+</head>
+<body>
+<h1>Supply List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Income ID</th>
+        <th>Number</th>
+        <th>Date</th>
+        <th>Last Change Date</th>
+        <th>Supplier Article</th>
+        <th>Tech Size</th>
+        <th>Barcode</th>
+        <th>Quantity</th>
+        <th>Total Price</th>
+        <th>Date Close</th>
+        <th>Warehouse Name</th>
+        <th>NM ID</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="supply : ${supplies}">
+        <td th:text="${supply.incomeId}">Income ID</td>
+        <td th:text="${supply.number}">Number</td>
+        <td th:text="${supply.date}">Date</td>
+        <td th:text="${supply.lastChangeDate}">Last Change Date</td>
+        <td th:text="${supply.supplierArticle}">Supplier Article</td>
+        <td th:text="${supply.techSize}">Tech Size</td>
+        <td th:text="${supply.barcode}">Barcode</td>
+        <td th:text="${supply.quantity}">Quantity</td>
+        <td th:text="${supply.totalPrice}">Total Price</td>
+        <td th:text="${supply.dateClose}">Date Close</td>
+        <td th:text="${supply.warehouseName}">Warehouse Name</td>
+        <td th:text="${supply.nmId}">NM ID</td>
+        <td th:text="${supply.status}">Status</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
