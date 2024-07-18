@@ -1,4 +1,4 @@
-package com.example.wildberriesapi.statistics;
+package com.example.wildberriesapi.statistics.incomes;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,16 +10,16 @@ import java.util.List;
 @Controller
 public class SupplyController {
 
-    SupplierService supplierService;
+    SupplierIncomesService supplierIncomesService;
 
     @Autowired
-    private SupplyController(SupplierService supplierService) {
-        this.supplierService = supplierService;
+    private SupplyController(SupplierIncomesService supplierIncomesService) {
+        this.supplierIncomesService = supplierIncomesService;
     }
 
     @GetMapping("/supplies")
     public String getSupply(Model model) {
-        List<Supply> supplies = supplierService.getSuppliers();
+        List<SupplyIncomes> supplies = supplierIncomesService.getSuppliers();
         model.addAttribute("supplies", supplies);
         return "supplies";
     }

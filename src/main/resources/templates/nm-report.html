@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="ru">
+<head>
+    <title>Analytics Report</title>
+</head>
+<body>
+<h1>Analytics Report</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Created At</th>
+        <th>Status</th>
+        <th>Name</th>
+        <th>Size</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="analytic : ${analytics}">
+        <td th:text="${analytic.id}"></td>
+        <td th:text="${analytic.createdAt}"></td>
+        <td th:text="${analytic.status}"></td>
+        <td th:text="${analytic.name}"></td>
+        <td th:text="${analytic.size}"></td>
+        <td th:text="${analytic.startDate}"></td>
+        <td th:text="${analytic.endDate}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

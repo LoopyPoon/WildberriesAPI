@@ -26,20 +26,20 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="supply : ${supplies}">
-        <td th:text="${supply.incomeId}">Income ID</td>
-        <td th:text="${supply.number}">Number</td>
-        <td th:text="${supply.date}">Date</td>
-        <td th:text="${supply.lastChangeDate}">Last Change Date</td>
-        <td th:text="${supply.supplierArticle}">Supplier Article</td>
-        <td th:text="${supply.techSize}">Tech Size</td>
-        <td th:text="${supply.barcode}">Barcode</td>
-        <td th:text="${supply.quantity}">Quantity</td>
-        <td th:text="${supply.totalPrice}">Total Price</td>
-        <td th:text="${supply.dateClose}">Date Close</td>
-        <td th:text="${supply.warehouseName}">Warehouse Name</td>
-        <td th:text="${supply.nmId}">NM ID</td>
-        <td th:text="${supply.status}">Status</td>
+    <tr th:each="supplyIncomes : ${supplies}">
+        <td th:text="${supplyIncomes.incomeId}">Income ID</td>
+        <td th:text="${supplyIncomes.number}">Number</td>
+        <td th:text="${supplyIncomes.date}">Date</td>
+        <td th:text="${supplyIncomes.lastChangeDate}">Last Change Date</td>
+        <td th:text="${supplyIncomes.supplierArticle}">Supplier Article</td>
+        <td th:text="${supplyIncomes.techSize}">Tech Size</td>
+        <td th:text="${supplyIncomes.barcode}">Barcode</td>
+        <td th:text="${supplyIncomes.quantity}">Quantity</td>
+        <td th:text="${supplyIncomes.totalPrice}">Total Price</td>
+        <td th:text="${supplyIncomes.dateClose}">Date Close</td>
+        <td th:text="${supplyIncomes.warehouseName}">Warehouse Name</td>
+        <td th:text="${supplyIncomes.nmId}">NM ID</td>
+        <td th:text="${supplyIncomes.status}">Status</td>
     </tr>
     </tbody>
 </table>

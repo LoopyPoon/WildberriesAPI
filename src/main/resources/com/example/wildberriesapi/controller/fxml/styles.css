@@ -1,0 +1,86 @@
+.root {
+    -fx-background-color: #FFFFFF;
+}
+
+.label {
+    -fx-font: 12 'System';
+}
+
+.text-field {
+    -fx-font-size: 14;
+}
+
+.ghost-label {
+    -fx-opacity: 0.5;
+}
+
+.button {
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-text-fill: #5F9E58;
+    -fx-border-color: #5F9E58;
+    -fx-border-radius: 5px;
+    -fx-font: 12 'System';
+}
+
+.button:hover {
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 5,0,0,0);
+}
+
+.main-button {
+    -fx-background-color: #5F9E58;
+    -fx-text-fill: white;
+}
+
+.ghost-button {
+    -fx-background-color: white;
+    -fx-text-fill: #5F9E58;
+}
+
+.directory-button {
+    -fx-background-color: white;
+}
+
+.danger-button {
+    -fx-background-color: #ff2b2b;
+    -fx-text-fill: white;
+    -fx-border-color: #ff2b2b;
+}
+
+.h2 {
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
+    -fx-text-fill: #35593D;
+}
+
+.h4 {
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-text-fill: #35593D;
+}
+
+.template-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-border-color: #a4a4a4;
+    -fx-border-radius: 10px;
+}
+
+.template-pane:hover {
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 5,0,0,0);
+}
+
+.usb-label {
+    -fx-font-size: 16;
+    -fx-text-fill: #35593D;
+}
+
+.usb-pane {
+    -fx-background-radius: 10px;
+    -fx-background-color: #EEF9EE;
+}
+
+.h1 {
+    -fx-font-size: 64;
+    -fx-font-weight: bold;
+}
