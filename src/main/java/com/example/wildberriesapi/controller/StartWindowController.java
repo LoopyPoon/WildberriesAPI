@@ -19,6 +19,8 @@ public class StartWindowController {
     public Button supplierStockButton;
     @FXML
     public Button supplierOrdersButton;
+    @FXML
+    public Button supplierSalesButton;
 
     public static void open(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(StartWindowController.class.getResource("fxml/StartWindow.fxml"));
@@ -47,13 +49,21 @@ public class StartWindowController {
             }
         });
 
-//        supplierOrdersButton.setOnAction(event -> {
-//            try {
-//                SupplierOrderController.open((Stage)supplierOrdersButton.getScene().getWindow());
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        });
+        supplierOrdersButton.setOnAction(event -> {
+            try {
+                SupplierOrdersController.open((Stage)supplierOrdersButton.getScene().getWindow());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        supplierSalesButton.setOnAction(event -> {
+            try {
+                SupplierSalesController.open((Stage)supplierSalesButton.getScene().getWindow());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
 }

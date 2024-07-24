@@ -1,5 +1,6 @@
-package com.example.wildberriesapi.statistics.orders;
+package com.example.wildberriesapi.statistics.sales;
 
+import com.example.wildberriesapi.statistics.orders.SupplyOrders;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -17,19 +18,19 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class SupplierOrdersService {
+public class SupplierSalesService {
     private static final String API_KEY = "eyJhbGciOiJFUzI1NiIsImtpZCI6IjIwMjQwNzE1djEiLCJ0eXAiOiJKV1QifQ.eyJlbnQiOjEsImV4cCI6MTczNjk4NjU0MywiaWQiOiI4MWEzYmJkMi1iYmFmLTQ2MTYtODRhMi0yNDM5OTRlMWNhY2EiLCJpaWQiOjMwMTI3MjgwLCJvaWQiOjQ4MjQ4LCJzIjoxMDczNzQxODYwLCJzaWQiOiJkZWNkZGU5Ny04Y2NmLTVkZDQtYTI0MS00YmFkYzA2N2IzZjYiLCJ0IjpmYWxzZSwidWlkIjozMDEyNzI4MH0.zYEyocKmGKNzIPeLzVCnDHgB-UD2MwUU2IA3166_b5keUN3Kw_cmSTcjJBFGm22nGNY5Cd7flTY7N4le5lI5AA";
-    private static final String API_URL = "https://statistics-api.wildberries.ru/api/v1/supplier/orders";
+    private static final String API_URL = "https://statistics-api.wildberries.ru/api/v1/supplier/sales";
     private final HttpClient client;
     private final ObjectMapper objectMapper;
 
-    public SupplierOrdersService() {
+    public SupplierSalesService() {
         this.client = HttpClient.newHttpClient();
         this.objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
     }
 
-    public List<SupplyOrders> getOrders(LocalDate dateFrom, int flag) {
+    public List<SupplySales> getSales(LocalDate dateFrom, int flag) {
 //        log.info("Using API_KEY: {}", API_KEY);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

@@ -1,0 +1,80 @@
+openapi: "3.0.2"
+info:
+  title: API Title
+  version: "1.0"
+servers:
+  - url: https://localhost:8080/api
+paths:
+  /statisctics/incomes/:
+    get:
+      summary: Поставки
+      description: Поставки. Максимум 1 запрос в минуту
+      parameters:
+        - name: dateFrom
+          in: query
+          description: Дата и время последнего изменения по поставке. Дата в формате RFC3339. Можно передать дату или дату со временем. Время можно указывать с точностью до секунд или миллисекунд. Время передаётся в часовом поясе Мск (UTC+3).
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Список поставок
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupplyIncomes'
+
+components:
+  schemas:
+    SupplyIncomes:
+      type: object
+      properties:
+        incomeId:
+          type: integer
+          description: Номер поставки
+        number:
+          type: string
+          maxLength: 40
+          description: Номер УПД
+        date:
+          type: string
+          format: date
+          description: Дата поступления. Если часовой пояс не указан, то берется Московское время UTC+3.
+        lastChangeDate:
+          type: string
+          format: date-time
+          description: Дата и время обновления информации в сервисе. Это поле соответствует параметру `dateFrom` в запросе. Если часовой пояс не указан, то берется Московское время UTC+3.
+        supplierArticle:
+          type: string
+          maxLength: 75
+          description: Артикул продавца
+        techSize:
+          type: string
+          maxLength: 30
+          description: Размер товара (пример S, M, L, XL, 42, 42-43)
+        barcode:
+          type: string
+          maxLength: 30
+          description: Бар-код
+        quantity:
+          type: integer
+          description: Количество
+        totalPrice:
+          type: number
+          description: Цена из УПД
+        dateClose:
+          type: string
+          format: date
+          description: Дата принятия (закрытия) в WB. Если часовой пояс не указан, то берется Московское время UTC+3
+        warehouseName:
+          type: string
+          maxLength: 50
+          description: Название склада
+        nmId:
+          type: integer
+          description: Артикул WB
+        status:
+          type: string
+          maxLength: 50
+          enum:
+            - Принято
+          description: Текущий статус поставки

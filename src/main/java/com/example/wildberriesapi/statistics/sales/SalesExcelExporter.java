@@ -1,6 +1,6 @@
-package com.example.wildberriesapi.statistics.orders;
+package com.example.wildberriesapi.statistics.sales;
 
-import com.example.wildberriesapi.statistics.stocks.SupplyStocks;
+import com.example.wildberriesapi.statistics.orders.SupplyOrders;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
@@ -13,20 +13,21 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Slf4j
-public class OrdersExcelExporter {
-    public static void exportToExcel(List<SupplyOrders> supplyOrdersList, File file, LocalDate dateFrom) {
+public class SalesExcelExporter {
+    public static void exportToExcel(List<SupplySales> supplySalesList, File file, LocalDate dateFrom) {
 
         try (Workbook workbook = new HSSFWorkbook()) {
-            Sheet sheet = workbook.createSheet("Заказы");
+            Sheet sheet = workbook.createSheet("Продажи");
 
             Row headerRow = sheet.createRow(0);
 
             String[] headers = {
-                    "Дата заказа", "Дата обновления", "Название склада", "Страна", "Округ", "Регион",
+                    "Дата продажи", "Дата обновления", "Название склада", "Страна", "Округ", "Регион",
                     "Артикул продавца", "Артикул WB", "Баркод", "Категория", "Предмет", "Бренд",
                     "Размер", "Номер поставки", "Договор поставки", "Договор реализации", "Цена без скидок",
-                    "Скидка продавца", "Скидка WB", "Цена с учетом всех скидок", "Цена со скидкой продавца",
-                    "Отмена заказа", "Дата отмены заказа", "Тип заказа", "Идентификатор стикера", "Номер заказа", "Уникальный идентификатор заказа"
+                    "Скидка продавца", "Скидка WB", "Оплачено с WB Кошелька", "К перечислению продавцу",
+                    "Фактическая цена", "Цена со скидкой продавца", "Уникальный идентификатор продажи",
+                    "Тип заказа", "Идентификатор стикера", "Номер заказа", "Уникальный идентификатор заказа"
             };
 
             CellStyle headerCellStyle = workbook.createCellStyle();
@@ -54,115 +55,119 @@ public class OrdersExcelExporter {
             // Data rows
             int rowNum = 1;
 
-            for (SupplyOrders supplyOrder : supplyOrdersList) {
+            for (SupplySales supplySale : supplySalesList) {
                 Row row = sheet.createRow(rowNum++);
 
                 Cell dateCell = row.createCell(0);
-                dateCell.setCellValue(dateTimeFormatter.format(supplyOrder.getDate()));
+                dateCell.setCellValue(dateTimeFormatter.format(supplySale.getDate()));
                 dateCell.setCellStyle(dateTimeCellStyle);
 
                 Cell lastChangeDateCell = row.createCell(1);
-                lastChangeDateCell.setCellValue(dateTimeFormatter.format(supplyOrder.getLastChangeDate()));
+                lastChangeDateCell.setCellValue(dateTimeFormatter.format(supplySale.getLastChangeDate()));
                 lastChangeDateCell.setCellStyle(dateTimeCellStyle);
 
                 Cell warehouseNameCell = row.createCell(2);
-                warehouseNameCell.setCellValue(supplyOrder.getWarehouseName());
+                warehouseNameCell.setCellValue(supplySale.getWarehouseName());
                 warehouseNameCell.setCellStyle(centerCellStyle);
 
                 Cell countryNameCell = row.createCell(3);
-                countryNameCell.setCellValue(supplyOrder.getCountryName());
+                countryNameCell.setCellValue(supplySale.getCountryName());
                 countryNameCell.setCellStyle(centerCellStyle);
 
                 Cell oblastOkrugNameCell = row.createCell(4);
-                oblastOkrugNameCell.setCellValue(supplyOrder.getOblastOkrugName());
+                oblastOkrugNameCell.setCellValue(supplySale.getOblastOkrugName());
                 oblastOkrugNameCell.setCellStyle(centerCellStyle);
 
                 Cell regionNameCell = row.createCell(5);
-                regionNameCell.setCellValue(supplyOrder.getRegionName());
+                regionNameCell.setCellValue(supplySale.getRegionName());
                 regionNameCell.setCellStyle(centerCellStyle);
 
                 Cell supplierArticleCell = row.createCell(6);
-                supplierArticleCell.setCellValue(supplyOrder.getSupplierArticle());
+                supplierArticleCell.setCellValue(supplySale.getSupplierArticle());
                 supplierArticleCell.setCellStyle(centerCellStyle);
 
                 Cell nmIdCell = row.createCell(7);
-                nmIdCell.setCellValue(supplyOrder.getNmId());
+                nmIdCell.setCellValue(supplySale.getNmId());
                 nmIdCell.setCellStyle(centerCellStyle);
 
                 Cell barcodeCell = row.createCell(8);
-                barcodeCell.setCellValue(supplyOrder.getBarcode());
+                barcodeCell.setCellValue(supplySale.getBarcode());
                 barcodeCell.setCellStyle(centerCellStyle);
 
                 Cell categoryCell = row.createCell(9);
-                categoryCell.setCellValue(supplyOrder.getCategory());
+                categoryCell.setCellValue(supplySale.getCategory());
                 categoryCell.setCellStyle(centerCellStyle);
 
                 Cell subjectCell = row.createCell(10);
-                subjectCell.setCellValue(supplyOrder.getSubject());
+                subjectCell.setCellValue(supplySale.getSubject());
                 subjectCell.setCellStyle(centerCellStyle);
 
                 Cell brandCell = row.createCell(11);
-                brandCell.setCellValue(supplyOrder.getBrand());
+                brandCell.setCellValue(supplySale.getBrand());
                 brandCell.setCellStyle(centerCellStyle);
 
                 Cell techSizeCell = row.createCell(12);
-                techSizeCell.setCellValue(supplyOrder.getTechSize());
+                techSizeCell.setCellValue(supplySale.getTechSize());
                 techSizeCell.setCellStyle(centerCellStyle);
 
                 Cell incomeIDCell = row.createCell(13);
-                incomeIDCell.setCellValue(supplyOrder.getIncomeID());
+                incomeIDCell.setCellValue(supplySale.getIncomeID());
                 incomeIDCell.setCellStyle(centerCellStyle);
 
                 Cell isSupplyCell = row.createCell(14);
-                isSupplyCell.setCellValue(supplyOrder.isSupply());
+                isSupplyCell.setCellValue(supplySale.isSupply());
                 isSupplyCell.setCellStyle(centerCellStyle);
 
                 Cell isRealizationCell = row.createCell(15);
-                isRealizationCell.setCellValue(supplyOrder.isRealization());
+                isRealizationCell.setCellValue(supplySale.isRealization());
                 isRealizationCell.setCellStyle(centerCellStyle);
 
                 Cell totalPriceCell = row.createCell(16);
-                totalPriceCell.setCellValue(supplyOrder.getTotalPrice());
+                totalPriceCell.setCellValue(supplySale.getTotalPrice());
                 totalPriceCell.setCellStyle(centerCellStyle);
 
                 Cell discountPercentCell = row.createCell(17);
-                discountPercentCell.setCellValue(supplyOrder.getDiscountPercent());
+                discountPercentCell.setCellValue(supplySale.getDiscountPercent());
                 discountPercentCell.setCellStyle(centerCellStyle);
 
                 Cell sppCell = row.createCell(18);
-                sppCell.setCellValue(supplyOrder.getSpp());
+                sppCell.setCellValue(supplySale.getSpp());
                 sppCell.setCellStyle(centerCellStyle);
 
-                Cell finishedPriceCell = row.createCell(19);
-                finishedPriceCell.setCellValue(supplyOrder.getFinishedPrice());
+                Cell paymentSaleAmountCell = row.createCell(19);
+                paymentSaleAmountCell.setCellValue(supplySale.getPaymentSaleAmount());
+                paymentSaleAmountCell.setCellStyle(centerCellStyle);
+
+                Cell forPayCell = row.createCell(20);
+                forPayCell.setCellValue(supplySale.getForPay());
+                forPayCell.setCellStyle(centerCellStyle);
+
+                Cell finishedPriceCell = row.createCell(21);
+                finishedPriceCell.setCellValue(supplySale.getFinishedPrice());
                 finishedPriceCell.setCellStyle(centerCellStyle);
 
-                Cell priceWithDiscCell = row.createCell(20);
-                priceWithDiscCell.setCellValue(supplyOrder.getPriceWithDisc());
+                Cell priceWithDiscCell = row.createCell(22);
+                priceWithDiscCell.setCellValue(supplySale.getPriceWithDisc());
                 priceWithDiscCell.setCellStyle(centerCellStyle);
 
-                Cell isCancelCell = row.createCell(21);
-                isCancelCell.setCellValue(supplyOrder.isCancel());
-                isCancelCell.setCellStyle(centerCellStyle);
+                Cell saleIDCell = row.createCell(23);
+                saleIDCell.setCellValue(supplySale.getSaleID());
+                saleIDCell.setCellStyle(centerCellStyle);
 
-                Cell cancelDateCell = row.createCell(22);
-                cancelDateCell.setCellValue(dateTimeFormatter.format(supplyOrder.getCancelDate()));
-                cancelDateCell.setCellStyle(dateTimeCellStyle);
-
-                Cell orderTypeCell = row.createCell(23);
-                orderTypeCell.setCellValue(supplyOrder.getOrderType().getDescription());
+                Cell orderTypeCell = row.createCell(24);
+                orderTypeCell.setCellValue(supplySale.getOrderType().getDescription());
                 orderTypeCell.setCellStyle(centerCellStyle);
 
-                Cell stickerCell = row.createCell(24);
-                stickerCell.setCellValue(supplyOrder.getSticker());
+                Cell stickerCell = row.createCell(25);
+                stickerCell.setCellValue(supplySale.getSticker());
                 stickerCell.setCellStyle(centerCellStyle);
 
-                Cell gNumberCell = row.createCell(25);
-                gNumberCell.setCellValue(supplyOrder.getGNumber());
+                Cell gNumberCell = row.createCell(26);
+                gNumberCell.setCellValue(supplySale.getGNumber());
                 gNumberCell.setCellStyle(centerCellStyle);
 
-                Cell sridCell = row.createCell(26);
-                sridCell.setCellValue(supplyOrder.getSrid());
+                Cell sridCell = row.createCell(27);
+                sridCell.setCellValue(supplySale.getSrid());
                 sridCell.setCellStyle(centerCellStyle);
             }
 
@@ -173,7 +178,7 @@ public class OrdersExcelExporter {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             String formattedDateFrom = dateFrom.format(formatter);
             String formattedCurrentDate = LocalDate.now().format(formatter);
-            String fileName = "Статистика_Заказы_" + formattedDateFrom + "_" + formattedCurrentDate + ".xls";
+            String fileName = "Статистика_Продажи_" + formattedDateFrom + "_" + formattedCurrentDate + ".xls";
 
             // Save the workbook to a file
             if (file.isDirectory()) {
