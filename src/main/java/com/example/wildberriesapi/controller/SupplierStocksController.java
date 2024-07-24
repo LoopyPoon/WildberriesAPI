@@ -1,8 +1,10 @@
 package com.example.wildberriesapi.controller;
 
 import com.example.wildberriesapi.statistics.incomes.IncomesExcelExporter;
-import com.example.wildberriesapi.statistics.incomes.SupplierIncomesService;
 import com.example.wildberriesapi.statistics.incomes.SupplyIncomes;
+import com.example.wildberriesapi.statistics.stocks.StocksExcelExporter;
+import com.example.wildberriesapi.statistics.stocks.SupplierStocksService;
+import com.example.wildberriesapi.statistics.stocks.SupplyStocks;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -22,8 +24,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Slf4j
-public class SupplierIncomesController {
-    SupplierIncomesService supplierIncomesService = new SupplierIncomesService();
+public class SupplierStocksController {
+    SupplierStocksService supplierStocksService = new SupplierStocksService();
 
     @FXML
     private DatePicker dateFiled;
@@ -42,7 +44,7 @@ public class SupplierIncomesController {
 
 
     public static void open(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(SupplierIncomesController.class.getResource("fxml/SupplierIncomesWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(SupplierStocksController.class.getResource("fxml/SupplierStocksWindow.fxml"));
         Parent parent = loader.load();
 
         Scene scene = new Scene(parent);
@@ -72,9 +74,9 @@ public class SupplierIncomesController {
             LocalDate selectedDate = dateFiled.getValue();
             if (selectedDate == null) return;
 
-            List<SupplyIncomes> supplyIncomesList = supplierIncomesService.getSuppliers(selectedDate);
+            List<SupplyStocks> supplyStocksList = supplierStocksService.getStocks(selectedDate);
 
-            IncomesExcelExporter.exportToExcel(supplyIncomesList, directory, selectedDate);
+            StocksExcelExporter.exportToExcel(supplyStocksList, directory, selectedDate);
         });
     }
 }

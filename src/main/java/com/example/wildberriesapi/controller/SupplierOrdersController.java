@@ -1,14 +1,15 @@
 package com.example.wildberriesapi.controller;
 
-import com.example.wildberriesapi.statistics.incomes.IncomesExcelExporter;
-import com.example.wildberriesapi.statistics.incomes.SupplierIncomesService;
-import com.example.wildberriesapi.statistics.incomes.SupplyIncomes;
+import com.example.wildberriesapi.statistics.orders.OrdersExcelExporter;
+import com.example.wildberriesapi.statistics.orders.SupplierOrdersService;
+import com.example.wildberriesapi.statistics.orders.SupplyOrders;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -22,8 +23,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Slf4j
-public class SupplierIncomesController {
-    SupplierIncomesService supplierIncomesService = new SupplierIncomesService();
+public class SupplierOrdersController {
+    SupplierOrdersService supplierOrdersService = new SupplierOrdersService();
 
     @FXML
     private DatePicker dateFiled;
@@ -35,6 +36,8 @@ public class SupplierIncomesController {
     private Button backButton;
     @FXML
     private Button getButton;
+    @FXML
+    private CheckBox flagCheckbox;
 
     File directory;
 
@@ -42,7 +45,7 @@ public class SupplierIncomesController {
 
 
     public static void open(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(SupplierIncomesController.class.getResource("fxml/SupplierIncomesWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(SupplierOrdersController.class.getResource("fxml/SupplierOrdersWindow.fxml"));
         Parent parent = loader.load();
 
         Scene scene = new Scene(parent);
@@ -72,9 +75,10 @@ public class SupplierIncomesController {
             LocalDate selectedDate = dateFiled.getValue();
             if (selectedDate == null) return;
 
-            List<SupplyIncomes> supplyIncomesList = supplierIncomesService.getSuppliers(selectedDate);
+            int flag = flagCheckbox.isSelected() ? 1 : 0;
+            List<SupplyOrders> supplyOrdersList = supplierOrdersService.getOrders(selectedDate, flag);
 
-            IncomesExcelExporter.exportToExcel(supplyIncomesList, directory, selectedDate);
+            OrdersExcelExporter.exportToExcel(supplyOrdersList, directory, selectedDate);
         });
     }
 }

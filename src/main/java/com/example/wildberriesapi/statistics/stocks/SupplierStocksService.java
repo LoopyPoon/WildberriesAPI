@@ -1,11 +1,10 @@
-package com.example.wildberriesapi.statistics.incomes;
+package com.example.wildberriesapi.statistics.stocks;
 
+import com.example.wildberriesapi.statistics.incomes.SupplyIncomes;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.net.URI;
@@ -19,19 +18,19 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class SupplierIncomesService {
+public class SupplierStocksService {
     private static final String API_KEY = "eyJhbGciOiJFUzI1NiIsImtpZCI6IjIwMjQwNzE1djEiLCJ0eXAiOiJKV1QifQ.eyJlbnQiOjEsImV4cCI6MTczNjk4NjU0MywiaWQiOiI4MWEzYmJkMi1iYmFmLTQ2MTYtODRhMi0yNDM5OTRlMWNhY2EiLCJpaWQiOjMwMTI3MjgwLCJvaWQiOjQ4MjQ4LCJzIjoxMDczNzQxODYwLCJzaWQiOiJkZWNkZGU5Ny04Y2NmLTVkZDQtYTI0MS00YmFkYzA2N2IzZjYiLCJ0IjpmYWxzZSwidWlkIjozMDEyNzI4MH0.zYEyocKmGKNzIPeLzVCnDHgB-UD2MwUU2IA3166_b5keUN3Kw_cmSTcjJBFGm22nGNY5Cd7flTY7N4le5lI5AA";
-    private static final String API_URL = "https://statistics-api.wildberries.ru/api/v1/supplier/incomes";
+    private static final String API_URL = "https://statistics-api.wildberries.ru/api/v1/supplier/stocks";
     private final HttpClient client;
     private final ObjectMapper objectMapper;
 
-    public SupplierIncomesService() {
+    public SupplierStocksService() {
         this.client = HttpClient.newHttpClient();
         this.objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
     }
 
-    public List<SupplyIncomes> getSuppliers(LocalDate dateFrom) {
+    public List<SupplyStocks> getStocks(LocalDate dateFrom) {
 //        log.info("Using API_KEY: {}", API_KEY);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -51,7 +50,7 @@ public class SupplierIncomesService {
             String responseBody = response.body();
 
 
-//            log.info("API response body: {}", responseBody);
+            log.info("API response body: {}", responseBody);
 
             return objectMapper.readValue(responseBody, new TypeReference<>() {});
         } catch (Exception e) {
