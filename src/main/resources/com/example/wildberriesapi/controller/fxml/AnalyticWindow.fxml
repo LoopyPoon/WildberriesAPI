@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="428.0" maxWidth="600.0" prefHeight="428.0" prefWidth="543.0" stylesheets="styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.wildberriesapi.controller.AnalyticController">
+   <ImageView fx:id="imageView" cache="true" fitHeight="200.0" fitWidth="258.0" layoutX="17.0" layoutY="132.0" pickOnBounds="true" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="132.0">
+      <Image url="@/com/example/wildberriesapi/controller/logo.png" />
+   </ImageView>
+   <Label layoutX="186.0" layoutY="170.0" prefHeight="93.0" prefWidth="463.0" styleClass="h1" text="СТАТИСТИКА" textFill="#48793d" AnchorPane.leftAnchor="186.0" AnchorPane.topAnchor="30.0">
+      <font>
+         <Font name="System Bold" size="64.0" />
+      </font></Label>
+   <Button fx:id="paidStorageButton" defaultButton="true" ellipsisString="" layoutX="290.0" layoutY="160.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="132.0" styleClass="main-button" text="Платное хранение" />
+   <Button fx:id="backButton" layoutX="400.0" layoutY="380.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Назад" />
+</AnchorPane>

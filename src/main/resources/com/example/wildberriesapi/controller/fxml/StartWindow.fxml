@@ -13,9 +13,9 @@
       <font>
          <Font name="System Bold" size="64.0" />
       </font></Label>
-   <Button fx:id="supplierIncomesButton" defaultButton="true" ellipsisString="" layoutX="290.0" layoutY="160.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="132.0" styleClass="main-button" text="Поставки" />
-   <Button fx:id="supplierStockButton" defaultButton="true" ellipsisString="" layoutX="450.0" layoutY="160.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="132.0" styleClass="main-button" text="Склад" />
-   <Button fx:id="supplierOrdersButton" defaultButton="true" ellipsisString="" layoutX="290.0" layoutY="250.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="132.0" styleClass="main-button" text="Заказы" />
-   <Button fx:id="supplierSalesButton" defaultButton="true" ellipsisString="" layoutX="450.0" layoutY="250.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="132.0" styleClass="main-button" text="Продажи" />
-   <Button fx:id="supplierReportButton" defaultButton="true" ellipsisString="" layoutX="439.0" layoutY="375.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="75.0" styleClass="main-button" text="Отчет" />
+   <Button fx:id="statisticsButton" defaultButton="true" ellipsisString="" layoutX="290.0" layoutY="160.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="132.0" styleClass="main-button" text="Статистика" />
+   <Button fx:id="analyticsButton" defaultButton="true" ellipsisString="" layoutX="450.0" layoutY="160.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="132.0" styleClass="main-button" text="Аналитика" />
+   <Button fx:id="advanceButton" defaultButton="true" ellipsisString="" layoutX="290.0" layoutY="250.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="132.0" styleClass="main-button" text="Продвижение" />
+<!--   <Button fx:id="supplierSalesButton" defaultButton="true" ellipsisString="" layoutX="450.0" layoutY="250.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="132.0" styleClass="main-button" text="Продажи" />-->
+<!--   <Button fx:id="supplierReportButton" defaultButton="true" ellipsisString="" layoutX="290.0" layoutY="334.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="292.0" styleClass="main-button" text="Отчет по продажам" />-->
 </AnchorPane>

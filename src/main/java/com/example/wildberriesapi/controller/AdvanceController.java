@@ -1,9 +1,11 @@
 package com.example.wildberriesapi.controller;
 
+import com.example.wildberriesapi.controller.advance_controller.CostHistoryController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
@@ -11,17 +13,15 @@ import java.io.IOException;
 import java.util.Objects;
 
 @Slf4j
-public class StartWindowController {
+public class AdvanceController {
 
     @FXML
-    public Button statisticsButton;
+    public Button paidStorageButton;
     @FXML
-    public Button analyticsButton;
-    @FXML
-    public Button advanceButton;
+    public Button backButton;
 
     public static void open(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(StartWindowController.class.getResource("fxml/StartWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(StartWindowController.class.getResource("/com/example/wildberriesapi/controller/fxml/AdvanceWindow.fxml"));
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
         stage.centerOnScreen();
@@ -31,30 +31,21 @@ public class StartWindowController {
 
     @FXML
     void initialize() {
-        statisticsButton.setOnAction(event -> {
+        paidStorageButton.setOnAction(event -> {
             try {
-                StatisticController.open((Stage)statisticsButton.getScene().getWindow());
+                CostHistoryController.open((Stage)paidStorageButton.getScene().getWindow());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
 
-        analyticsButton.setOnAction(event -> {
+        backButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             try {
-                AnalyticController.open((Stage)analyticsButton.getScene().getWindow());
+                StartWindowController.open((Stage) backButton.getScene().getWindow());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
-
-        advanceButton.setOnAction(event -> {
-            try {
-                AdvanceController.open((Stage)advanceButton.getScene().getWindow());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
     }
 
 }

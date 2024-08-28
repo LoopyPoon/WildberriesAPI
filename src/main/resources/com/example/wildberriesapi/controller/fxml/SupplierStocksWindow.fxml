@@ -4,7 +4,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="226.0" prefWidth="541.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.wildberriesapi.controller.SupplierStocksController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="226.0" prefWidth="541.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.wildberriesapi.controller.statistic_controller.SupplierStocksController">
    <Label layoutX="16.0" layoutY="81.0" prefHeight="38.0" prefWidth="84.0" text="Путь:" />
    <TextField fx:id="pathField" editable="false" layoutX="121.0" layoutY="87.0" prefHeight="26.0" prefWidth="360.0" />
    <Button fx:id="changeDirectoryButton" layoutX="487.0" layoutY="87.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="27.0" styleClass="main-button" text="">
